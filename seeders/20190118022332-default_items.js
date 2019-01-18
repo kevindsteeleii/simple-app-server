@@ -14,11 +14,7 @@ module.exports = {
     */
    return queryInterface.bulkInsert('Items', 
    [
-     { 
-       name: 'banana',
-      createdAt: new Date(),
-      updatedAt: new Date()
-      },
+     { name: 'banana' },
     { 
       name: 'orange',
       createdAt: new Date(),
