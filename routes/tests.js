@@ -1,7 +1,9 @@
 const { Test } = require('../models');
 const router = require('express').Router();
 
-router.route('/:id')
+router.route('/:id', (req, res, next) => {
+  next();
+})
 .patch((req, res) => {
   Test.findByPk(req.params.id).then(test => test.update({...req.body.test})).then(test => res.json(test));
 })
@@ -12,7 +14,9 @@ router.route('/:id')
   })
 })
 
-router.route('/')
+router.route('/', (req, res, next) => {
+  next();
+})
 .get((req, res) => {
   Test.findAll().then(tests => res.json(tests));
 })
