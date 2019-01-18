@@ -10,7 +10,7 @@ const itemsRouter = require('./routes/items');
 const testsRouter = require('./routes/tests');
 const app = express();
 
-const whiteList = [ process.env.PROD_URL, 'http://localhost:3000/' ];
+// const whiteList = [ process.env.PROD_URL, 'http://localhost:3000/' ];
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors({
+/* app.use(cors({
   allowedHeaders: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'],
   origin: function(origin, callback) {
     if (!origin) return callback(null, true);
@@ -35,8 +35,9 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+})); */
 
+app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/items', itemsRouter);
