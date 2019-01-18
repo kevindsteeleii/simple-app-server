@@ -28,6 +28,7 @@ router.route('/', (req, res, next) => {
 })
 
 router.all('*', (req, res, next) => {
+  /* res.json({err: "Error 404: Route unavailable"}) */
   res.redirect('/items');
 })
 
