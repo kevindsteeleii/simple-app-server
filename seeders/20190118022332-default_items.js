@@ -12,12 +12,28 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-   return queryInterface.bulkInsert('Item', 
+   return queryInterface.bulkInsert('Items', 
    [
-     { name: 'banana'},
-     { name: 'orange'},
-     { name: 'mustard'},
-     { name: 'bagel'}
+     { 
+       name: 'banana',
+      createdAt: new Date(),
+      updatedAt: new Date()
+      },
+    { 
+      name: 'orange',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    { 
+      name: 'mustard',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    { 
+      name: 'bagel',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
   ], {});
   },
 
