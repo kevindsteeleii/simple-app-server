@@ -29,8 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     return callback(null, true);
 //   }
 // }));
-
-app.use(cors({origin: process.env.PROD_URL || 'http://localhost:3000/'}))
+const origin = process.env.PROD_URL || 'http://localhost:3000/';
+app.use(cors({ origin }))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
