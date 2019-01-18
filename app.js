@@ -9,7 +9,7 @@ const itemsRouter = require('./routes/items');
 const testsRouter = require('./routes/tests');
 const app = express();
 
-const WhiteList = [ process.env.PROD_URL, 'http://localhost:3000/' ];
+const whiteList = [ process.env.PROD_URL, 'http://localhost:3000/' ];
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -17,20 +17,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(cors({
-//   origin: function(origin, callback) {
-//     if (!origin) return callback(null, true);
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
 
-//     if(whitelist.indexOf(origin) === -1) {
-//       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-//       return callback(new Error(msg), false);
-//     }
+    if(whiteList.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
 
-//     return callback(null, true);
-//   }
-// }));
-const origin = process.env.PROD_URL || 'http://localhost:3000/';
-app.use(cors({ origin }))
+    return callback(null, true);
+  }
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
